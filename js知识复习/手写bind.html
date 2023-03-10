@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function foo(a, b, c) {
+        console.log(this, a, b, c)
+      }
+
+      Function.prototype.myBind = function (thisArg, ...args) {
+        return (...arg) => {
+          if (thisArg === 'undefined' || thisArg === 'null') thisArg = window
+          thisArg = Object(thisArg)
+          thisArg.fn = this
+          thisArg.fn(...args, ...arg)
+          // console.log(thisArg, args)
+          delete thisArg.fn
+        }
+      }
+      foo.myBind('1', 1)(2, 3)
+    </script>
+  </body>
+</html>

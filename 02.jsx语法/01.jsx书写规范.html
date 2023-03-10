@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class Root extends React.Component {
+        // 组件数据
+        constructor() {
+          super()
+          this.state = {
+            message: 'hello world',
+          }
+        }
+
+        // jsx结构必须有一个根元素 与vue2一致
+        // 返回的结构推荐写一个()包裹
+        // jsx中标签可以是单标签 且不能省略 /
+        render() {
+          return (
+            <div>
+              <h2>{this.state.message}</h2>
+            </div>
+          )
+        }
+      }
+
+      // react渲染的方法
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<Root />)
+    </script>
+  </body>
+</html>

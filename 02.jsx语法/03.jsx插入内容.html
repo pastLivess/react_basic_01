@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class Root extends React.Component {
+        // 组件数据
+        constructor() {
+          super()
+          this.state = {
+            message: 'hello world',
+            age: 18,
+            arr: [1, 2, 3],
+            a: undefined,
+            b: true,
+            c: null,
+            obj: { name: 'obj' },
+          }
+        }
+
+        render() {
+          const { message, age, arr, a, b, c, obj } = this.state
+          return (
+            <div>
+              {/* jsx中变量插入标签体的注意事项  字符串/数字/数组等可以正常显示 */}
+              <h2>{message}</h2>
+              <h2>{age}</h2>
+              <h2>{arr}</h2>
+              {/* undefined null 布尔值 会被jsx解析为空 */}
+              <h2>{a}</h2>
+              <h2>{b}</h2>
+              <h2>{c}</h2>
+              {/* Object类型不能直接被展示 */}
+              <h2>{obj}</h2>
+            </div>
+          )
+        }
+      }
+
+      // react渲染的方法
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<Root />)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+      let message = 'hello world'
+      function changeMessage() {
+        //1. 修改数据
+        message = 'hello react'
+        //2. 重新渲染界面 两种方式 第一种直接调用root.render重新渲染
+        rootRender()
+      }
+
+      rootRender()
+
+      //3. 封装渲染函数
+      function rootRender() {
+        // 1.jsx语法中统一绑定变量使用 单括号
+        // 2.jsx语法中绑定事件 onXxxx
+        root.render(
+          <div>
+            <h2>{message}</h2>
+            <button onClick={changeMessage}>修改文本</button>
+          </div>
+        )
+      }
+    </script>
+  </body>
+</html>

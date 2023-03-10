@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+    <style>
+      .abc {
+        font-size: 30px;
+      }
+      .cba {
+        color: red;
+      }
+      .active {
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            message: 'hello world',
+            isActive: true,
+            style: {
+              color: 'blue',
+              fontSize: '50px',
+            },
+          }
+        }
+        render() {
+          const { message, isActive, style } = this.state
+
+          // jsx中动态添加class推荐写法
+          // 写法一 字符串拼接
+          // const className = `abc cba ${isActive ? 'active' : ''}`
+          // 写法二 将所有class放到数组中
+          const classList = ['abc', 'cba']
+          if (isActive) classList.push('active')
+          // 写法三 要使用到第三方库(classnames) 后面脚手架再讲
+          return (
+            <div>
+              {/* 由于js中class是关键字 所以jsx中绑定class 使用className属性 */}
+              <h2 className={classList.join(' ')}>{message}</h2>
+              {/* 绑定style 对象写法 */}
+              <h3 style={style}>{message}</h3>
+            </div>
+          )
+        }
+      }
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<App />)
+    </script>
+  </body>
+</html>

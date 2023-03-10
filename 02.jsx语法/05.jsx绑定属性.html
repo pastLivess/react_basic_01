@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../lib/react.development.js"></script>
+    <script src="../lib/react-dom.development.js"></script>
+    <script src="../lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            message: 'hello react',
+            title: '哈哈哈',
+            imgUrl: 'https://sponsors.vuejs.org/images/vuemastery.avif',
+            a: 'https://cn.vuejs.org/',
+          }
+        }
+        render() {
+          const { message, title, imgUrl, a } = this.state
+          return (
+            <div>
+              {/* jsx绑定全局属性 */}
+              <h2 title={title}>{message}</h2>
+              <img src={imgUrl} alt="" />
+              <a href={a}>vue</a>
+            </div>
+          )
+        }
+      }
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<App />)
+    </script>
+  </body>
+</html>

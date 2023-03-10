@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // forEach 将数组中每个元素进行遍历 跳出循环使用抛出异常的方式
+      const arr = [1, 2, 3]
+      arr.forEach((item) => {
+        if (item === 2) {
+          return
+        }
+        console.log('forEach', item)
+      })
+
+      // map方法 返回一个数组 当结果为true 数组中包含加工好的每个元素
+      let result = arr.map((item) => item * 2)
+      console.log('map', result)
+
+      // filter 返回一个数组 当结果为true 数组中包含满足条件的元素
+      result = arr.filter((item) => item === 2)
+      console.log('filter', result)
+
+      // reduce 求和函数
+      result = arr.reduce((prev, item) => prev + item)
+      console.log('reduce', result)
+
+      // find/findIndex函数 当结果为true 返回那个找到的元素/索引
+      result = arr.find((item) => item === 2)
+      console.log('find', result)
+      result = arr.findIndex((item) => item === 2)
+      console.log('findIndex', result)
+
+      // every 检查数组中元素是否满足要求 全部满足返回true 全部不满足返回false
+      result = arr.every((item) => item > 1)
+      console.log('every', result)
+
+      // some 检查数组中元素是否有一个满足要求 满足返回true 不满足返回false
+      result = arr.some((item) => item > 1)
+      console.log('some', result)
+
+      // sort 排序函数 a-b 升序 b-a 降序
+      result = arr.sort((a, b) => b - a)
+      console.log('sort', result)
+    </script>
+  </body>
+</html>

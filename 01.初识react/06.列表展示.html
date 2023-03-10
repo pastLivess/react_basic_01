@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class Root extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            movies: ['变形金刚', '终结者', '异形', '星际穿越'],
+          }
+        }
+        render() {
+          // 第一种做法
+          /*  const liEls = []
+          for (let i = 0; i < this.state.movies.length; i++) {
+            const movies = this.state.movies[i]
+            const liEl = <li>{movies}</li>
+            liEls.push(liEl)
+          } */
+          // 第二种做法
+          // const liEls = this.state.movies.map((item) => <li>{item}</li>)
+          return (
+            <div>
+              <h2>电影列表</h2>
+              <ul>
+                {this.state.movies.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<Root />)
+    </script>
+  </body>
+</html>

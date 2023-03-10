@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./lib/react.development.js"></script>
+    <script src="./lib/react-dom.development.js"></script>
+    <script src="./lib/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class Root extends React.Component {
+        // 组件数据
+        constructor() {
+          super()
+          this.state = {
+            message: 'hello world',
+            name: 'state',
+            age: 19,
+          }
+          // 这样做也可以,之后所有changeMessage方法调用不需要绑定this了
+          // this.changeMessage = this.changeMessage.bind(this)
+        }
+        // 组件方法(实例方法)
+        changeMessage() {
+          // 内部做了两件事 1.将state中message值改掉 2.自动重新执行render函数
+          this.setState({
+            message: 'hello react',
+          })
+        }
+        // 渲染组件 绑定的事件需要通过this访问
+        render() {
+          return (
+            <div>
+              <h2>{this.state.message}</h2>
+              <button onClick={this.changeMessage.bind(this)}>修改文本</button>
+            </div>
+          )
+        }
+      }
+
+      // react渲染的方法
+      const root = ReactDOM.createRoot(document.querySelector('#root'))
+      root.render(<Root />)
+    </script>
+  </body>
+</html>
